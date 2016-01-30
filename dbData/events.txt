@@ -1,0 +1,44 @@
+type, description, characterId, points, episode
+attendance,             Bran, 29, 1, 1
+attendance,             Jon Snow, 26, 1, 1
+attendance,             Robb, 81, 1, 1
+attendance,             Ned, 79, 1, 1
+attendance,             Catelyn, 78, 1, 1
+attendance,             Rickon, 80, 1, 1
+attendance,             Sansa, 30, 1, 1
+attendance,             Septa Mordane, 64, 1, 1
+attendance,             Arya, 28, 1, 1
+attendance,             Rodrik Cassel, 45, 1, 1
+attendance,             Theon, 8, 1, 1
+kill (rando),           Ned kills Nights Watch deserter, 79, 10, 1
+attendance,             Jory Cassell, 44, 1, 1
+attendance,             Cersei, 11, 1, 1
+attendance,             Jaime, 12, 1, 1
+attendance,             Maester Luwin, 59, 1, 1
+attendance,             Joffrey, 41, 1, 1
+attendance,             The Hound, 62, 1, 1
+attendance,             Robert Baratheon, 43, 1, 1
+attendance,             Hodor, 53, 1, 1
+attendance,             Myrcella, 2, 1, 1
+attendance,             Tommen, 4, 1, 1
+promotion,              Hand of the King, 79, 1, 1
+attendance,             Tyrion, 13, 1, 1
+attendance,             Ros, 73, 1, 1
+naked (whole shebang),  Ros, 73, 25, 1
+sex,                    with Ros, 13, 20, 1
+sex,                    with Tyrion, 73, 20, 1
+attendance,             Dany, 32, 1, 1
+attendance,             Viserys, 83, 1, 1
+naked (butt/boobs),     Dany, 32, 15, 1
+attendance,             Illyrio, 54, 1, 1
+attendance,             Khal Drogo, 47, 1, 1
+attendance,             Benjen, 77, 1, 1
+attendance,             Jorah Mormont, 18, 1, 1
+sex,                    with Dany, 47, 20, 1
+sex,                    with Khal Drogo, 32, 20, 1
+sex,                    with Cersei, 12, 30, 1
+sex,                    with Jaime, 11, 30, 1
+knockout,               Jaime throws Bran out the window, 12, 10, 1
+brutal one-liner,       'I would let his whole tribe fuck you - all forty thousand men and their horses too if thats what it took' Viserys, 83, 10, 1
+brutal one-liner,       'I dont fight in tournaments because when I fight a man for real I dont want him to know what I can do' Ned, 79, 10, 1
+brutal one-liner,       'While he"s off fucking boars and hunting whores... or is it the other way around?', 12, 10, 1
