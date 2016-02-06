@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 // env variables
 var env = process.env.NODE_ENV;
-var dbUser = process.env.DB_USER;
+var dbUser = process.env.DB_USER || 'root';
 var dbPass = process.env.DB_PASS || null;
 
 // seed data
@@ -23,10 +23,11 @@ var Event = db.models.event;
 var League = db.models.league;
 var RosterData = db.models.rosterData;
 var User = db.models.user;
+var Invitation = db.models.invitation;
 
 // if testing, syncing will drop tables
 // if not testing, syncing will only add tables that were missing
-var shouldForce = (env === 'TESTING' || env === 'DEVELOPMENT');
+var shouldForce = (env === 'testing' || env === 'development');
 
 var init = function() {
 
@@ -38,8 +39,11 @@ var init = function() {
     .then(function() {
       return Event.bulkCreate(seedData.events);
     })
+    .then(() => {
+      return Invitation.bulkCreate(seedData.invitations);
+    })
     .then(function() {
-      if (env === 'testing' || env === 'DEVELOPMENT') {
+      if (env === 'testing' || env === 'development') {
         return User.bulkCreate(seedData.users)
           .then(function() {
             return League.bulkCreate(seedData.leagues);
@@ -47,7 +51,7 @@ var init = function() {
           .then(function() {
             // add leagues to users since leagues weren't created yet
             User.update({leagueId: 1}, {where: {id: {'$lte': 4}}});
-            User.update({leagueId: 2}, {where: {id: {'$lte': 5, '$gt': 4}}});
+            User.update({leagueId: 2}, {where: {id: {'$lte': 6, '$gt': 4}}});
             return RosterData.bulkCreate(seedData.rosters);
           });
       }
@@ -67,4 +71,5 @@ module.exports = {
   League: db.models.league,
   RosterData: db.models.rosterData,
   User: db.models.user,
+  Invitation: db.models.invitation,
 };

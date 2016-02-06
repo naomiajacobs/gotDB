@@ -3,11 +3,16 @@ var db = require('../dbInterface');
 var cors = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept, id");
 
   if (req.method === 'OPTIONS') { res.send(200); }
   next();
 };
+
+var logger = (req, res, next) => {
+  console.log('Serving ', req.method, ' request to ', req.url);
+  next();
+}
 
 // makeRosters can handle making rosters for multiple users
 // It does this by calling addRosters, which calls makeRoster for each user
@@ -73,6 +78,8 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
   var row = rows[0];
   var episode = +row.dataValues.episode;
   var characterId = row.dataValues.characterId;
+  var droppedFor = row.dataValues.droppedFor;
+  var updatedAt = row.dataValues.updatedAt;
   // if league hasn't seen episode yet, recurse without adding
   if (episode > episodeLimit) {
     rows.shift();
@@ -84,7 +91,7 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
   return db.Event.sum('points', {where: {characterId, episode}})
   .then(function(sum) {
     totalPoints += (sum || 0);
-    roster[episode].push([characterId, sum || 0]);
+    roster[episode].push([characterId, sum || 0, droppedFor, updatedAt]);
     rows.shift();
     return addEvents(rows, roster, episodeLimit, totalPoints);
   })
@@ -113,13 +120,12 @@ var formatLeagueDataForDraft = function(league) {
 };
 
 var formatDraftData = function(draftData) {
-  console.log(draftData);
   var rosterDataObjects = [];
-  draftData.users.forEach(function(user) {
-    user.characters.forEach(function(charId) {
+  draftData.league.users.forEach(function(user) {
+    user.characters.forEach(function(character) {
       rosterDataObjects.push({
         userId: user.id,
-        characterId: charId,
+        characterId: character,
         // TODO: MAKE THIS WORK FOR LATER SEASONS
         episode: 1,
       });
@@ -134,5 +140,6 @@ module.exports = {
   cors,
   formatLeagueDataForDraft,
   formatDraftData,
+  logger,
 };
 
