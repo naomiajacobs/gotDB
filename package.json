@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fantasyGameOfThrones/gotDB.git"
+  },
   "scripts": {
     "test": "mysql -u root < ./db/schema.sql && mocha ./db/tests.js",
     "build": "babel db -d build",
