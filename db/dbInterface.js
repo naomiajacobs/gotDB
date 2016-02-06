@@ -26,7 +26,7 @@ var User = db.models.user;
 
 // if testing, syncing will drop tables
 // if not testing, syncing will only add tables that were missing
-var shouldForce = (env === 'testing' || env === 'development');
+var shouldForce = (env === 'TESTING' || env === 'DEVELOPMENT');
 
 var init = function() {
 
@@ -39,7 +39,7 @@ var init = function() {
       return Event.bulkCreate(seedData.events);
     })
     .then(function() {
-      if (env === 'testing' || env === 'development') {
+      if (env === 'testing' || env === 'DEVELOPMENT') {
         return User.bulkCreate(seedData.users)
           .then(function() {
             return League.bulkCreate(seedData.leagues);
