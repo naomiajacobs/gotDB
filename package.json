@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mysql -u root < ./db/schema.sql && mocha ./db/tests.js",
     "build": "babel db -d build",
-    "start": "node build/server/server.js"
+    "start": "nodemon build/server/server.js"
   },
   "keywords": [],
   "author": "",
